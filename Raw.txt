@@ -26,3 +26,10 @@ If, for a given set of numbers A, B and R, a y-value makes Error = 0, then IV = 
 			   ..
 
   stop when  f(Y) reaches close  to Zero
+
+
+References:
+
+Bisection algorithm:http://users.csc.tntech.edu/~mjkosa/2400s11/Bisection/Bisection.java
+
+Calculating implied volatility:http://www.gummy-stuff.org/implied-volatility.htm
