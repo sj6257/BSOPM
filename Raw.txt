@@ -1,0 +1,24 @@
+  /* Raw
+     * 
+     *  Define A = C/S, B = K/S, R = rT and let y = σ SQRT(T) = IV SQRT(T).
+The Black-Scholes formula then looks like: 
+[1]       A = N(d1) - B e-R N(d2) 
+where 
+      d1 = [ -log(B) + R + (1/2)y2 ] / y 
+and 
+      d2 = d1 - y
+Our problem is to find y in terms of A, B and R.
+We rewrite [1] like so: 
+[2]       Error = N(d1) - B e-R N(d2) - A
+If, for a given set of numbers A, B and R, a y-value makes Error = 0, then IV = y / SQRT(T).
+
+
+               N(d1) - B e-R N(d2) - A=0
+				 
+              equation:   N(( -log(B) + R + (1/2)y2 ) / y ) - B e-R N((( -log(B) + R + (1/2)y2 ) / y ) -y) - A=0
+			  
+			  function: f(y)=N(( -log(B) + R + (1/2)y2 ) / y ) - B e-R N((( -log(B) + R + (1/2)y2 ) / y ) -y) - A
+				 
+			  find y1  and y2 such that f(y1) and f(y2) has negative values
+      
+      */
