@@ -1,6 +1,4 @@
-  /* Raw
-     * 
-     *  Define A = C/S, B = K/S, R = rT and let y = σ SQRT(T) = IV SQRT(T).
+Define A = C/S, B = K/S, R = rT and let y = σ SQRT(T) = IV SQRT(T).
 The Black-Scholes formula then looks like: 
 [1]       A = N(d1) - B e-R N(d2) 
 where 
@@ -19,6 +17,10 @@ If, for a given set of numbers A, B and R, a y-value makes Error = 0, then IV = 
 			  
 			  function: f(y)=N(( -log(B) + R + (1/2)y2 ) / y ) - B e-R N((( -log(B) + R + (1/2)y2 ) / y ) -y) - A
 				 
-			  find y1  and y2 such that f(y1) and f(y2) has negative values
-      
-      */
+			  find y1  and y2 such that f(y1) and f(y2) has opposite signs to function values
+			  assume f(y1)=+ve   and f(y2)=-ve
+		      Yc= 0.5( y1+y2)
+               now  if f(Yc)=-ve then new range  y1(+) and Yc(-) 
+			   Yd=0.5 (y1+yc)
+			   ..
+			   ..
