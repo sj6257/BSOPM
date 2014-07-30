@@ -24,3 +24,5 @@ If, for a given set of numbers A, B and R, a y-value makes Error = 0, then IV = 
 			   Yd=0.5 (y1+yc)
 			   ..
 			   ..
+
+  stop when  f(Y) reaches close  to Zero
