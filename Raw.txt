@@ -82,4 +82,48 @@ D2=D1-V*Math.sqrt(T);
 	RhoP=(K*T*Math.exp(-R*T)*Distribution.NORMSDIST(-D2))/(100)
   
 
+/************************** Modified Java equations **************************************/
 
+
+
+ //Case2: if we have dividend rate 
+//Log (S/K) + [( R -dR + 0.5(V^2) )T]		
+D1=((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)));
+D2=(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T));
+
+//Call Price= S *  NORMSDIST (D1) * e^(-dRT) - [ K e^(-RT)  * NORMSDIST (D2)]
+  C=S*Distribution.NORMSDIST(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))))*Math.exp(-dR*T)-(K*Math.exp(-R*T)*Distribution.NORMSDIST((((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T))));
+
+//Put Price=EXP(-R*T)*K*NORMSDIST(-D2)-EXP(-dR*T)*S*NORMSDIST(-D1))
+  P=K*Math.exp(-R*T)*Distribution.NORMSDIST(-(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T)))-(S*Distribution.NORMSDIST(-((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))))*Math.exp(-dR*T));
+
+
+/*Delta*/
+
+//Call :=  e^(-dRT)*NORMSDIST (D1)
+  DeltaC=Math.exp(-dR*T)*Distribution.NORMSDIST(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))));
+//Put :=e^(-dRT)*(NORMSDIST(D1)-1)
+  DeltaP=Math.exp(-dR*T)*(Distribution.NORMSDIST(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))))-1);
+
+/*Gammma*/
+  //=e^(-dRT) * e^(-0.5D1^2)/( S*V*sqrt(T) *SQRT(2Pi) )
+  Gamma=Math.exp(-dR*T) * Math.exp(-0.5* Math.pow(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))),2)) /( S*V*Math.sqrt(T)*Math.sqrt(2*Math.PI));
+
+//Theta
+  //Call Theta=(1/T) *( -( (S*V*e^(-dR*T)*e^(-05*D1*D1))/(2*SQRT(T)*SQRT(2Pi)) ) -R*K*e(-RT)N(D2)+dR*S*e^(-dR*T)*N(D1) )
+  ThetaC= (1/T)* (-( (S*V*Math.exp(-dR*T)*Math.exp(-0.5* Math.pow(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))),2)))/(2*Math.sqrt(T)*Math.sqrt(2*Math.PI)) ) -R*K*Math.exp(-R*T)*Distribution.NORMSDIST((((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T)))+dR*S*Math.exp(-dR*T)*Distribution.NORMSDIST(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))));
+   
+  //Put Theta=(1/T) *( -( (S*V*e^(-dR*T)*e^(-05*D1*D1))/(2*SQRT(T)*SQRT(2Pi)) ) +R*K*e(-RT)N(-D2)+dR*S*e^(-dR*T)*N(-D1) )
+  ThetaP= (1/T)* (-( (S*V*Math.exp(-dR*T)*Math.exp(-0.5* Math.pow(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))),2)))/(2*Math.sqrt(T)*Math.sqrt(2*Math.PI)) )+R*K*Math.exp(-R*T)*Distribution.NORMSDIST(-(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T)))+dR*S*Math.exp(-dR*T)*Distribution.NORMSDIST(-((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))));           
+   
+//Vega
+  //=(S*e^(-dR*T)*SQRT(T)*e^(-0.5*D1*D1) )/(100*SQRT(2*Pi))
+ Vaga= (S*Math.exp(-dR*T)*Math.sqrt(T)*Math.exp(-0.5* Math.pow(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T))),2))) /(100*Math.sqrt(2*Math.PI));
+ 
+
+//Rho
+  //Call Rho=  (K*T*e^(-RT)*N(D2)) /(100)
+    RhoC=(K*T*Math.exp(-R*T)*Distribution.NORMSDIST((((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T))))/(100)
+  
+  //Put  Rho=(K*T*e^(-RT)*N(-D2)) /(-100)
+	RhoP=(K*T*Math.exp(-R*T)*Distribution.NORMSDIST(-(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T))))/(100)
