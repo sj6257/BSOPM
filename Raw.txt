@@ -33,3 +33,53 @@ References:
 Bisection algorithm:http://users.csc.tntech.edu/~mjkosa/2400s11/Bisection/Bisection.java
 
 Calculating implied volatility:http://www.gummy-stuff.org/implied-volatility.htm
+
+
+
+  /*********************** Modified Java **********************************/
+   
+   
+//Case2: if we have dividend rate 
+//Log (S/K) + [( R -dR + 0.5(V^2) )T]		
+D1=(Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T));
+D2=D1-V*Math.sqrt(T);
+		
+//Call Price= S *  NORMSDIST (D1) * e^(-dRT) - [ K e^(-RT)  * NORMSDIST (D2)]
+  C=S*Distribution.NORMSDIST(D1)*Math.exp(-dR*T)-(K*Math.exp(-R*T)*Distribution.NORMSDIST(D2));
+		
+//Put Price=EXP(-R*T)*K*NORMSDIST(-D2)-EXP(-dR*T)*S*NORMSDIST(-D1))
+  P=K*Math.exp(-R*T)*Distribution.NORMSDIST(-D2)-(S*Distribution.NORMSDIST(-D1)*Math.exp(-dR*T));
+
+			
+/*Delta*/
+			
+//Call :=  e^(-dRT)*NORMSDIST (D1)
+  DeltaC=Math.exp(-dR*T)*Distribution.NORMSDIST(D1);
+//Put :=e^(-dRT)*(NORMSDIST(D1)-1)
+  DeltaP=Math.exp(-dR*T)*(Distribution.NORMSDIST(D1)-1);
+			
+/*Gammma*/
+  //=e^(-dRT) * e^(-0.5D1^2)/( S*V*sqrt(T) *SQRT(2Pi) )
+  Gamma=Math.exp(-dR*T) * Math.exp(-0.5*D1*D1) /( S*V*Math.sqrt(T)*Math.sqrt(2*Math.PI));
+			
+//Theta
+  //Call Theta=(1/T) *( -( (S*V*e^(-dR*T)*e^(-05*D1*D1))/(2*SQRT(T)*SQRT(2Pi)) ) -R*K*e(-RT)N(D2)+dR*S*e^(-dR*T)*N(D1) )
+  ThetaC= (1/T)* (-( (S*V*Math.exp(-dR*T)*Math.exp(-0.5*D1*D1))/(2*Math.sqrt(T)*Math.sqrt(2*Math.PI)) ) -R*K*Math.exp(-R*T)*Distribution.NORMSDIST(D2)+dR*S*Math.exp(-dR*T)*Distribution.NORMSDIST(D1));
+   
+  //Put Theta=(1/T) *( -( (S*V*e^(-dR*T)*e^(-05*D1*D1))/(2*SQRT(T)*SQRT(2Pi)) ) +R*K*e(-RT)N(-D2)+dR*S*e^(-dR*T)*N(-D1) )
+  ThetaP= (1/T)* (-( (S*V*Math.exp(-dR*T)*Math.exp(-0.5*D1*D1))/(2*Math.sqrt(T)*Math.sqrt(2*Math.PI)) )+R*K*Math.exp(-R*T)*Distribution.NORMSDIST(-D2)+dR*S*Math.exp(-dR*T)*Distribution.NORMSDIST(-D1));           
+   
+//Vega
+  //=(S*e^(-dR*T)*SQRT(T)*e^(-0.5*D1*D1) )/(100*SQRT(2*Pi))
+ Vaga= (S*Math.exp(-dR*T)*Math.sqrt(T)*Math.exp(-0.5*D1*D1)) /(100*Math.sqrt(2*Math.PI));
+ 
+
+//Rho
+  //Call Rho=  (K*T*e^(-RT)*N(D2)) /(100)
+    RhoC=(K*T*Math.exp(-R*T)*Distribution.NORMSDIST(D2))/(100)
+  
+  //Put  Rho=(K*T*e^(-RT)*N(-D2)) /(-100)
+	RhoP=(K*T*Math.exp(-R*T)*Distribution.NORMSDIST(-D2))/(100)
+  
+
+
