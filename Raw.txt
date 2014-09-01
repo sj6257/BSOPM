@@ -127,3 +127,21 @@ D2=(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T));
   
   //Put  Rho=(K*T*e^(-RT)*N(-D2)) /(-100)
 	RhoP=(K*T*Math.exp(-R*T)*Distribution.NORMSDIST(-(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T))))/(100)
+	
+	
+	
+	
+	
+	
+	    GetSpecificStockOptionsChainData (StockCode)
+	http://www.nseindia.com/live_market/dynaContent/live_watch/option_chain/optionKeys.jsp?symbol=NIFTY&date=25SEP2014
+	GetSpecificStockFuturesData (StockCode)
+    http://www.nseindia.com/live_market/dynaContent/live_watch/fomwatchsymbol.jsp?key=NIFTY&Fut_Opt=Futures
+    GetNIFTYOptions
+	http://nseindia.com/content/fo/fomktwtch_OPTIDXNIFTY.htm?a=1234
+    
+    GetStockOptions
+	http://nseindia.com/content/fo/fomktwtch_OPTSTK.htm?a=1234
+	
+	
+	
