@@ -145,3 +145,55 @@ D2=(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T));
 	
 	
 	http://www.google.com/finance/getprices?q=NIFTY&x=NSE&i=1&f=d,o,h,l,c,v&p=d
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		 int currentStock=10005;
+	
+		 ArrayList strikeArray = new ArrayList( );
+		 strikeArray= genrateStrikekPrice(currentStock);
+		 Iterator it = strikeArray.iterator( );
+		 while ( it.hasNext( ) ) {
+			 System.out.println( it.next( ) );
+			 }
+	}
+
+	
+	public static ArrayList genrateStrikekPrice(int cureentStock)
+	{
+		 ArrayList strikeArray = new ArrayList();
+		int base,baseUp,baseDown;
+		
+		base=(int) roundToSignificantFigures((double)cureentStock,2);
+		strikeArray.add(base);
+		baseUp=base;
+		for(int i=1;i<20;i++)
+		{
+			baseUp=baseUp+50;
+			strikeArray.add(baseUp);
+		}
+		
+		baseDown=base;
+		for(int i=1;i<20;i++)
+		{
+			baseDown=baseDown-50;
+			strikeArray.add(baseDown);
+		}
+		
+		return strikeArray;
+		
+	}
+
+	public static double roundToSignificantFigures(double num, int n) {
+	    if(num == 0) {
+	        return 0;
+	    }
+
+	    final double d = Math.ceil(Math.log10(num < 0 ? -num: num));
+	    final int power = n - (int) d;
+
+	    final double magnitude = Math.pow(10, power);
+	    final long shifted = Math.round(num*magnitude);
+	    return shifted/magnitude;
+	}
