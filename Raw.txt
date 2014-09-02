@@ -144,4 +144,4 @@ D2=(((Math.log(S/K)+ ( R -dR + 0.5*V*V)*T)/(V*Math.sqrt(T)))-V*Math.sqrt(T));
 	http://nseindia.com/content/fo/fomktwtch_OPTSTK.htm?a=1234
 	
 	
-	
+	http://www.google.com/finance/getprices?q=NIFTY&x=NSE&i=1&f=d,o,h,l,c,v&p=d
