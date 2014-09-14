@@ -32,6 +32,21 @@ References:
 
 Bisection algorithm:http://users.csc.tntech.edu/~mjkosa/2400s11/Bisection/Bisection.java
 
+
+
+ public double Theta()
+	   {
+		   if( option=="Call")
+            return ((-1*Math.exp(-dR*T)* S*(Math.exp(-0.5*D1*D1) /Math.sqrt(2*Math.PI))*V)/(2*Math.sqrt(T)	)-(R*K*Math.exp(-R*T)*Distribution.NORMSDIST(D2))+(dR*S*Math.exp(-dR*T)*Distribution.NORMSDIST(D1)));			   
+		   else
+			 return ((-1*Math.exp(-dR*T)*S*(Math.exp(-0.5*D1*D1) /Math.sqrt(2*Math.PI))*V)/(2*Math.sqrt(T))+(R*K*Math.exp(-R*T)*Distribution.NORMSDIST(-D2))-(dR*S*Math.exp(-dR*T)*Distribution.NORMSDIST(-D1)));
+	   }
+
+	   
+	   
+	   https://www.rtmath.net/help/html/a3110fb0-1c47-4573-bc55-96175a2a1e76.htm
+	   http://www.option-price.com/index.php
+
 Calculating implied volatility:http://www.gummy-stuff.org/implied-volatility.htm
 
 
