@@ -8,3 +8,5 @@ The Black-Scholes model is used to calculate the theoretical price of European p
 
 Read more: Options Pricing: Black-Scholes Model | Investopedia
 http://www.investopedia.com/university/options-pricing/black-scholes-model.asp#ixzz4Q8ZaDuDb 
+
+Black-Scholes Model https://brainmass.com/business/black-scholes-model
